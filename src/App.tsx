@@ -1,33 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import { BrowserRouter as Router , Routes , Route  } from 'react-router-dom' 
+import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+import SignUp from './Auth/SignUp.tsx';
+import SignIn from './Auth/SignIn.tsx';
+import ForgotPassword from './Auth/ForgotPassword.tsx';
+import UpdateProfile from './Auth/UpdateProfile.tsx';
+import Dashboard from './Auth/Dashboard.tsx';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Container>
+      <div className='d-flex justify-content-center align-items-center vh-100'>
+        <Router>
+          <Routes>
+            <Route path='/sign-up' element={<SignUp/>}/>
+            <Route path='/sign-in' element={<SignIn/>}/>
+            <Route path='/forgot-password' element={<ForgotPassword/>}/>
+            <Route path='/update-profile' element={<UpdateProfile/>}/>
+            <Route path='/' element={<Dashboard/>}/>
+          </Routes>
+        </Router>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    </Container>
     </>
   )
 }
