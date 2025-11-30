@@ -9,8 +9,24 @@ const Dashboard = () => {
     backgroundColor: "#ff0088",
     borderRadius: 5,
   }
+
   const[isVisible,setIsVisible] = useState(true);
+  const[isLoading,setLoading] = useState("true");
+  function changeLoading()
+  {
+    if(isLoading == "true")
+    {
+      setLoading("false")
+      console.log(isLoading)
+    }else{
+      setLoading("true")
+      console.log(isLoading)
+    }
+  }
   return (
+    // {isLoading} 
+    <> 
+     <button onClick={changeLoading}>Change Status :  {isLoading}</button>
     <div className='container'>
        <Swiper
       spaceBetween={50}
@@ -51,7 +67,7 @@ const Dashboard = () => {
             </motion.button>
         </div>
 
-
+</>
   )
 }
 
