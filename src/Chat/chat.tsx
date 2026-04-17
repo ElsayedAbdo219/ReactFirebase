@@ -4,7 +4,7 @@ import echo from './echo.tsx';
 export default function Chat() {
 
     useEffect(() => {
-        const userId = 16;
+        const userId = 16; // Replace with the actual user ID you want to listen for
 
         const channel = echo.private(`message.${userId}`);
         channel.listen('.message.sent', (e) => {

@@ -3,7 +3,7 @@ import Pusher from 'pusher-js';
 
 Pusher.logToConsole = true;
 
-const token = "843|vtatGe0OOiZOhtYMacbrEAwj8Rb278KLUXJMG3IX4687f865";
+const token = "843|vtatGe0OOiZOhtYMacbrEAwj8Rb278KLUXJMG3IX4687f865"; // Replace with your actual token
 
 const echo = new Echo({
     broadcaster: 'pusher',
