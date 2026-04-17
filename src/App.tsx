@@ -8,7 +8,8 @@ import SignIn from './Auth/SignIn.tsx';
 import ForgotPassword from './Auth/ForgotPassword.tsx';
 import UpdateProfile from './Auth/UpdateProfile.tsx';
 import Dashboard from './Auth/Dashboard.tsx';
-import './App.css'
+import './App.css';
+import Chat from './Chat/chat.tsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path='/forgot-password' element={<ForgotPassword/>}/>
             <Route path='/update-profile' element={<UpdateProfile/>}/>
             <Route path='/' element={<Dashboard/>}/>
+             <Route path="/chat" element={<Chat />} />
           </Routes>
         </Router>
       </div>

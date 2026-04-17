@@ -1,5 +1,5 @@
-import {useState} from 'react'
-import { motion , AnimatePresence } from "motion/react"
+import { useState } from 'react'
+import { motion, AnimatePresence } from "motion/react"
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css';
 const Dashboard = () => {
@@ -10,64 +10,79 @@ const Dashboard = () => {
     borderRadius: 5,
   }
 
-  const[isVisible,setIsVisible] = useState(true);
-  const[isLoading,setLoading] = useState("true");
-  function changeLoading()
-  {
-    if(isLoading == "true")
-    {
+  const [isVisible, setIsVisible] = useState(true);
+  const [isLoading, setLoading] = useState("true");
+  const [users, setUsers] = useState([]);
+  function changeLoading() {
+    if (isLoading == "true") {
       setLoading("false")
       console.log(isLoading)
-    }else{
+    } else {
       setLoading("true")
       console.log(isLoading)
     }
   }
+  async function getAllUsers() {
+    try {
+      const response = await fetch('https://back.anceega.com/client-api/dash/v1/companies');
+      const jsonUsers = await response.json();
+      setUsers(jsonUsers);
+    } catch {
+      console.log("Error Fetch Users , Try Fetch");
+    }
+  }
   return (
     // {isLoading} 
-    <> 
-     <button onClick={changeLoading}>Change Status :  {isLoading}</button>
-    <div className='container'>
-       <Swiper
-      spaceBetween={50}
-      slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      ...
-    </Swiper>
+    <>
+    {
+      users.map((user)=>{
+        return(
+        <div key={user.id}>{user.full_name}</div>
+        )
+      })
+    }
+      <button onClick={changeLoading}>Change Status :  {isLoading}</button>
+      <div className='container'>
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={3}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide>Slide 1</SwiperSlide>
+          <SwiperSlide>Slide 2</SwiperSlide>
+          <SwiperSlide>Slide 3</SwiperSlide>
+          <SwiperSlide>Slide 4</SwiperSlide>
+          ...
+        </Swiper>
 
-      <motion.div
-        style={box}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 1 }}
-      />
-          <br /><br /><br /><br />
-                <AnimatePresence initial={false}>
-                {isVisible ? (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0 }}
-                        style={box}
-                        key="box"
-                    />
-                ) : null}
-            </AnimatePresence>
-            <motion.button
-                className='button'
-                onClick={() => setIsVisible(!isVisible)}
-                whileTap={{ y: 1 }}
-            >
-                {isVisible ? "Hide" : "Show"}
-            </motion.button>
-        </div>
+        <motion.div
+          style={box}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1 }}
+        />
+        <br /><br /><br /><br />
+        <AnimatePresence initial={false}>
+          {isVisible ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              style={box}
+              key="box"
+            />
+          ) : null}
+        </AnimatePresence>
+        <motion.button
+          className='button'
+          onClick={() => setIsVisible(!isVisible)}
+          whileTap={{ y: 1 }}
+        >
+          {isVisible ? "Hide" : "Show"}
+        </motion.button>
+      </div>
 
-</>
+    </>
   )
 }
 
