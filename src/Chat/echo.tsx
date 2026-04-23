@@ -1,7 +1,7 @@
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 
-Pusher.logToConsole = true;
+Pusher.logToConsole = true; 
 
 const token = "843|vtatGe0OOiZOhtYMacbrEAwj8Rb278KLUXJMG3IX4687f865"; // Replace with your actual token
 
